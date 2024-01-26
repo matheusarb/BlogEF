@@ -5,7 +5,11 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        var ctx = new BlogEFDataContext();
-        
+        using(var context = new BlogEFDataContext())
+        {
+            Tag tag = new Tag { Name="ASP.NET", Slug="asp-net" };
+            context.Tags.Add(tag);
+            context.SaveChanges();
+        };
     }
 }
