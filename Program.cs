@@ -1,5 +1,6 @@
 ﻿using BlogEF.Data;
 using BlogEF.Models;
+using Microsoft.EntityFrameworkCore;
 
 internal class Program
 {
@@ -29,24 +30,34 @@ internal class Program
             //     System.Console.WriteLine(ex.Message);
             // }
 
-            //READ
-            var aspTag = context
-                .Tags
-                .Where(x => x.Name.Contains("asp"))
-                .ToList();
+            //READ ONE
+            // var tag = context
+            // .Tags
+            // .AsNoTracking()
+            // .FirstOrDefault(x => x.Id == 29);
+            // System.Console.WriteLine(tag?.Name);
 
-            if (aspTag.Count() != 0)
-            {
-                foreach (var tag in aspTag)
-                {
-                    System.Console.WriteLine(tag.Name);
-                }
-                return;
-            }
-            else
-            {
-                System.Console.WriteLine("There is no match to the query in Database");
-            }
+            //READ MANY
+            //Quando em leitura, utilizar o AsNoTracking() para não puxar os metadados e tornar a consulta mais performática
+            //passar o .ToList() ao final da chamada, pq é quando a consulta ao banco é executada, assim garantimos performance
+            // var aspTag = context
+            //     .Tags
+            //     .Where(x => x.Name.Contains("asp"))
+            //     .AsNoTracking()
+            //     .ToList();
+
+            // if (aspTag.Count() != 0)
+            // {
+            //     foreach (var item in aspTag)
+            //     {
+            //         System.Console.WriteLine(item.Name);
+            //     }
+            //     return;
+            // }
+            // else
+            // {
+            //     System.Console.WriteLine("There is no match to the query in Database");
+            // }
         };
 
         // static void DisplayTags()
