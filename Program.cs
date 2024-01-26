@@ -9,7 +9,7 @@ internal class Program
         using (var context = new BlogEFDataContext())
         {
             //CREATE
-            // Tag tag = new Tag { Name="ASP.NET", Slug="asp-net" };
+            // Tag tag = new Tag { Name="Blazor server", Slug="blazor" };
             // context.Tags.Add(tag);
             // context.SaveChanges();
 
@@ -58,14 +58,20 @@ internal class Program
             // {
             //     System.Console.WriteLine("There is no match to the query in Database");
             // }
+
+            DisplayTags();
         };
 
-        // static void DisplayTags()
-        // {
-        //     using(var ctx = new BlogEFDataContext())
-        //     {
-        //         ctx.Tags.SelectMany();
-        //     }
-        // }
+        static void DisplayTags()
+        {
+            using (var context = new BlogEFDataContext())
+            {
+                var tags = context
+                    .Tags
+                    .ToList();
+                foreach(var tag in tags)
+                    System.Console.WriteLine($"{tag.Id}| {tag.Name}");
+            }
+        }
     }
 }
