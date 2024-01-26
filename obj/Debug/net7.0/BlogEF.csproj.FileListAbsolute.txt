@@ -1,0 +1,14 @@
+C:\dev\blogef\bin\Debug\net7.0\BlogEF.exe
+C:\dev\blogef\bin\Debug\net7.0\BlogEF.deps.json
+C:\dev\blogef\bin\Debug\net7.0\BlogEF.runtimeconfig.json
+C:\dev\blogef\bin\Debug\net7.0\BlogEF.dll
+C:\dev\blogef\bin\Debug\net7.0\BlogEF.pdb
+C:\dev\blogef\obj\Debug\net7.0\BlogEF.GeneratedMSBuildEditorConfig.editorconfig
+C:\dev\blogef\obj\Debug\net7.0\BlogEF.AssemblyInfoInputs.cache
+C:\dev\blogef\obj\Debug\net7.0\BlogEF.AssemblyInfo.cs
+C:\dev\blogef\obj\Debug\net7.0\BlogEF.csproj.CoreCompileInputs.cache
+C:\dev\blogef\obj\Debug\net7.0\BlogEF.dll
+C:\dev\blogef\obj\Debug\net7.0\refint\BlogEF.dll
+C:\dev\blogef\obj\Debug\net7.0\BlogEF.pdb
+C:\dev\blogef\obj\Debug\net7.0\BlogEF.genruntimeconfig.cache
+C:\dev\blogef\obj\Debug\net7.0\ref\BlogEF.dll

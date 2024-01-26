@@ -1,8 +1,11 @@
-﻿internal class Program
+﻿using BlogEF.Data;
+using BlogEF.Models;
+
+internal class Program
 {
     private static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
-
+        var ctx = new BlogEFDataContext();
+        
     }
 }
