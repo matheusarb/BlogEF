@@ -7,48 +7,63 @@ internal class Program
     private static void Main(string[] args)
     {
         using var context = new BlogEFDataContext();
-    
-        var category = new Category
-        {
-            Name="Backend",
-            Slug="backend"
-        };
 
-        var user = new User
-        {
-            Name="Matheus Ribeiro",
-            Email="matheus@email.com",
-            PasswordHash="HASH",
-            Bio="IBM Senior Engineer",
-            Image="https://",
-            Slug="matheusribeiroa"
-        };
+        // var category = new Category
+        // {
+        //     Name="Backend",
+        //     Slug="backend"
+        // };
 
-        var post = new Post
-        {
-            Category=category,
-            Author=user,
-            Title="começando EFCore",
-            Summary="efcore",
-            Body="<p>HelloWorld!</p>",
-            Slug="ef-core",
-            CreateDate=DateTime.Now,
-            LastUpdateDate=DateTime.Now
-        } ;
+        // var user = new User
+        // {
+        //     Name="Matheus Ribeiro",
+        //     Email="matheus@email.com",
+        //     PasswordHash="HASH",
+        //     Bio="IBM Senior Engineer",
+        //     Image="https://",
+        //     Slug="matheusribeiroa"
+        // };
 
-        context.Posts.Add(post);
-        
-    }
-    
-        static void DisplayTags()
+        // var post = new Post
+        // {
+        //     Category=category,
+        //     Author=user,
+        //     Title="começando EFCore",
+        //     Summary="efcore",
+        //     Body="<p>HelloWorld!</p>",
+        //     Slug="ef-core",
+        //     CreateDate=DateTime.Now,
+        //     LastUpdateDate=DateTime.Now
+        // } ;
+
+        // context.Posts.Add(post);
+        // context.SaveChanges();
+
+        var posts = context
+        .Posts
+        .AsNoTracking()
+        .Include(x => x.Author) //Include() do EFCore é como o InnerJoin ou LeftJoin do SQLServer
+        .Include(x=>x.Category)
+        .OrderByDescending(x => x.LastUpdateDate)
+        .ToList();
+
+        foreach (var post in posts)
         {
-            using (var context = new BlogEFDataContext())
-            {
-                var tags = context
-                    .Tags
-                    .ToList();
-                foreach(var tag in tags)
-                    System.Console.WriteLine($"tag1: {tag.Id}| {tag.Name}");
-            }
+            System.Console.WriteLine($"{post.Title} escrito por {post.Author?.Name} em {post.Category?.Name}.");
         }
+
+    }
+
+    static void DisplayTags()
+    {
+        using (var context = new BlogEFDataContext())
+        {
+            var tags = context
+                .Tags
+                .ToList();
+            foreach (var tag in tags)
+                System.Console.WriteLine($"tag1: {tag.Id}| {tag.Name}");
+        }
+    }
+
 }
