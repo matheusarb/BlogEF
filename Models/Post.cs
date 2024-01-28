@@ -6,15 +6,13 @@ namespace BlogEF.Models;
 [Table("Post")]
 public class Post
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
-    [ForeignKey("CategoryId")]
+   
     public int CategoryId { get; set; }
     public Category Category { get; set; }
     
-    [ForeignKey("AuthorId")]
+    
     public int AuthorId { get; set; }
     public User Author { get; set; }
 
