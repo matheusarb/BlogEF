@@ -6,61 +6,40 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        using (var context = new BlogEFDataContext())
+        using var context = new BlogEFDataContext();
+    
+        var category = new Category
         {
-            //CREATE
-            // Tag tag = new Tag { Name="Blazor server", Slug="blazor" };
-            // context.Tags.Add(tag);
-            // context.SaveChanges();
-
-            //UPDATE
-            // var tag = context.Tags.FirstOrDefault(x=>x.Id == 1);
-            // tag.Name = ".NET";
-            // tag.Slug = "dotnet";
-            // context.Update(tag);
-            // context.SaveChanges();
-
-            //DELETE
-            // try {
-            //     var tag = context.Tags.FirstOrDefault(x=>x.Id == 1);
-            //     context.Remove(tag);
-            //     context.SaveChanges();
-            // } catch(Exception ex) {
-            //     System.Console.WriteLine("Não foi possível deletar o item.");
-            //     System.Console.WriteLine(ex.Message);
-            // }
-
-            //READ ONE
-            // var tag = context
-            // .Tags
-            // .AsNoTracking()
-            // .FirstOrDefault(x => x.Id == 29);
-            // System.Console.WriteLine(tag?.Name);
-
-            //READ MANY
-            //Quando em leitura, utilizar o AsNoTracking() para não puxar os metadados e tornar a consulta mais performática
-            //passar o .ToList() ao final da chamada, pq é quando a consulta ao banco é executada, assim garantimos performance
-            // var aspTag = context
-            //     .Tags
-            //     .Where(x => x.Name.Contains("asp"))
-            //     .AsNoTracking()
-            //     .ToList();
-
-            // if (aspTag.Count() != 0)
-            // {
-            //     foreach (var item in aspTag)
-            //     {
-            //         System.Console.WriteLine(item.Name);
-            //     }
-            //     return;
-            // }
-            // else
-            // {
-            //     System.Console.WriteLine("There is no match to the query in Database");
-            // }
-            DisplayTags();
+            Name="Backend",
+            Slug="backend"
         };
 
+        var user = new User
+        {
+            Name="Matheus Ribeiro",
+            Email="matheus@email.com",
+            PasswordHash="HASH",
+            Bio="IBM Senior Engineer",
+            Image="https://",
+            Slug="matheusribeiroa"
+        };
+
+        var post = new Post
+        {
+            Category=category,
+            Author=user,
+            Title="começando EFCore",
+            Summary="efcore",
+            Body="<p>HelloWorld!</p>",
+            Slug="ef-core",
+            CreateDate=DateTime.Now,
+            LastUpdateDate=DateTime.Now
+        } ;
+
+        context.Posts.Add(post);
+        
+    }
+    
         static void DisplayTags()
         {
             using (var context = new BlogEFDataContext())
@@ -72,5 +51,4 @@ internal class Program
                     System.Console.WriteLine($"tag1: {tag.Id}| {tag.Name}");
             }
         }
-    }
 }
