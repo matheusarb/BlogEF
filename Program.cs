@@ -58,7 +58,6 @@ internal class Program
             // {
             //     System.Console.WriteLine("There is no match to the query in Database");
             // }
-
             DisplayTags();
         };
 
@@ -70,7 +69,7 @@ internal class Program
                     .Tags
                     .ToList();
                 foreach(var tag in tags)
-                    System.Console.WriteLine($"{tag.Id}| {tag.Name}");
+                    System.Console.WriteLine($"tag1: {tag.Id}| {tag.Name}");
             }
         }
     }
