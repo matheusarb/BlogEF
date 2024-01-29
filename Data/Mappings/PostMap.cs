@@ -18,5 +18,18 @@ public class PostMap : IEntityTypeConfiguration<Post>
         builder.Property(x=>x.Id)
             .ValueGeneratedOnAdd()
             .UseIdentityColumn();
+
+        // Propriedades
+        builder.Property(x=>x.Title)
+            .IsRequired()
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(160);
+        
+        builder.Property(x=>x.LastUpdateDate)
+            .IsRequired()
+            .HasColumnName("LastUpdateDate")
+            .HasColumnType("SMALLDATETIME")
+            .HasDefaultValue(DateTime.Now.ToUniversalTime());
+            // .HasDefaultValueSql("GETDATE()") 
     }
 }

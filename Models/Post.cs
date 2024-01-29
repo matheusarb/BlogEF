@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlogEF.Models;
 
-[Table("Post")]
 public class Post
 {
     public int Id { get; set; }
