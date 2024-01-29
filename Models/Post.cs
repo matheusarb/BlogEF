@@ -15,5 +15,5 @@ public class Post
 
     public User Author { get; set; }
     public Category Category { get; set; }
-    public IList<Tag> Tags { get; set; }
+    public List<Tag> Tags { get; set; }
 }

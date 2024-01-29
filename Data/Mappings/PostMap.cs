@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using BlogEF.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -31,5 +32,35 @@ public class PostMap : IEntityTypeConfiguration<Post>
             .HasColumnType("SMALLDATETIME")
             .HasDefaultValue(DateTime.Now.ToUniversalTime());
             // .HasDefaultValueSql("GETDATE()") 
+        
+        // Relacionamento UM para muitos
+            //Autor
+            builder.HasOne(x=>x.Author)
+                .WithMany(x=>x.Posts)
+                .HasConstraintName("FK_Post_Author")
+                .OnDelete(DeleteBehavior.Cascade);
+
+            //Categoria
+            builder.HasOne(x=>x.Category)
+                .WithMany(x=>x.Posts)
+                .HasConstraintName("FK_Category_Post")
+                .OnDelete(DeleteBehavior.Cascade);
+
+        // Relacionamento MUITOS PARA MUITOS
+            builder.HasMany(x=>x.Tags)
+                .WithMany(x=>x.Posts)
+                .UsingEntity<Dictionary<string, object>>(
+                    "PostTag",
+                     post => post.HasOne<Tag>()
+                        .WithMany()
+                        .HasForeignKey("PostId")
+                        .HasConstraintName("FK_PostTag_PostId")
+                        .OnDelete(DeleteBehavior.Cascade),
+                    tag => tag.HasOne<Post>()
+                        .WithMany()
+                        .HasForeignKey("TagId")
+                        .HasConstraintName("FK_PostTag_TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                );
     }
 }
