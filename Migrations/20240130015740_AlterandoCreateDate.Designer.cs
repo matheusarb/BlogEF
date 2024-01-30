@@ -4,6 +4,7 @@ using BlogEF.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogEF.Migrations
 {
     [DbContext(typeof(BlogEFDataContext))]
-    partial class BlogEFDataContextModelSnapshot : ModelSnapshot
+    [Migration("20240130015740_AlterandoCreateDate")]
+    partial class AlterandoCreateDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,7 +77,7 @@ namespace BlogEF.Migrations
                     b.Property<DateTime>("LastUpdateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("DATETIME")
-                        .HasDefaultValue(new DateTime(2024, 1, 29, 23, 9, 2, 201, DateTimeKind.Local).AddTicks(7643))
+                        .HasDefaultValue(new DateTime(2024, 1, 30, 1, 57, 40, 363, DateTimeKind.Utc).AddTicks(1749))
                         .HasColumnName("LastUpdateDate");
 
                     b.Property<string>("Slug")

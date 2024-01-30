@@ -4,6 +4,7 @@ using BlogEF.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogEF.Migrations
 {
     [DbContext(typeof(BlogEFDataContext))]
-    partial class BlogEFDataContextModelSnapshot : ModelSnapshot
+    [Migration("20240130020902_PostLastUpdate_to_DateTime.Now")]
+    partial class PostLastUpdate_to_DateTimeNow
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

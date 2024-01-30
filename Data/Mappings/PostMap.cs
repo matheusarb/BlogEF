@@ -25,13 +25,17 @@ public class PostMap : IEntityTypeConfiguration<Post>
             .IsRequired()
             .HasColumnType("VARCHAR")
             .HasMaxLength(160);
-        
+        builder.Property(x=>x.CreateDate)
+            .IsRequired()
+            .HasColumnName("CreateDate")
+            .HasColumnType("DATETIME");
+            // .HasDefaultValue(DateTime.Now.ToUniversalTime());
         builder.Property(x=>x.LastUpdateDate)
             .IsRequired()
             .HasColumnName("LastUpdateDate")
-            .HasColumnType("SMALLDATETIME")
-            .HasDefaultValue(DateTime.Now.ToUniversalTime());
-            // .HasDefaultValueSql("GETDATE()") 
+            .HasColumnType("DATETIME")
+            .HasDefaultValue(DateTime.Now.Date);
+            // .HasDefaultValueSql("GETDATE()");
         
         // Relacionamento UM para muitos
             //Autor
